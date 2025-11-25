@@ -1,0 +1,33 @@
+[profile.default]
+src = "src"
+out = "out"
+libs = ["lib"]
+remappings = [
+    "@openzeppelin/contracts-upgradeable/=lib/openzeppelin-contracts-upgradeable/contracts/",
+    "@openzeppelin/contracts/=lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/"
+]
+fs_permissions = [
+    { access = "read-write", path = "./"},
+    { access = "read", path = "./out"},
+]
+
+# Compiler settings - pinned for bytecode consistency across chains
+solc = "0.8.22"
+optimizer = true
+optimizer_runs = 200
+evm_version = "paris"
+via_ir = false
+
+# See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options
+
+[rpc_endpoints]
+anvil-hardhat = "http://localhost:8545"
+base-sepolia = "${BASE_SEPOLIA_RPC_URL}"
+base = "${BASE_RPC_URL}"
+polygon-pos = "${POLYGON_RPC_URL}"
+mainnet = "${MAINNET_RPC_URL}"
+
+[etherscan]
+base-sepolia = { key = "${ETHERSCAN_API_KEY}" }
+polygon-pos = { key = "${POLYGONSCAN_API_KEY}", url = "https://api.polygonscan.com/api" }
+mainnet = { key = "${ETHERSCAN_API_KEY}" }
